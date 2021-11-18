@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="anningtex.controller.MainController">
+    <children>
+        <Button layoutX="52.0" layoutY="119.0" mnemonicParsing="false" onAction="#analysisOnClick" prefHeight="23.0"
+                prefWidth="184.0" text="解析二维码">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <ImageView fx:id="ivPic" fitHeight="327.0" fitWidth="430.0" layoutX="52.0" layoutY="257.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <Text fx:id="tvResult" layoutX="386.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Result:"
+              wrappingWidth="403.240234375">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Button layoutX="52.0" layoutY="33.0" mnemonicParsing="false" onAction="#generateOnClick" prefHeight="23.0"
+                prefWidth="184.0" text="生成二维码">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
