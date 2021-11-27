@@ -10,12 +10,12 @@
             fx:controller="anningtex.controller.MainController">
     <children>
         <Button layoutX="52.0" layoutY="119.0" mnemonicParsing="false" onAction="#analysisOnClick" prefHeight="23.0"
-                prefWidth="184.0" text="解析二维码">
+                prefWidth="184.0" text="1.解析单个二维码">
             <font>
                 <Font size="14.0"/>
             </font>
         </Button>
-        <ImageView fx:id="ivPic" fitHeight="327.0" fitWidth="430.0" layoutX="52.0" layoutY="257.0" pickOnBounds="true"
+        <ImageView fx:id="ivPic" fitHeight="327.0" fitWidth="430.0" layoutX="52.0" layoutY="298.0" pickOnBounds="true"
                    preserveRatio="true"/>
         <Text fx:id="tvResult" layoutX="386.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Result:"
               wrappingWidth="403.240234375">
@@ -24,7 +24,13 @@
             </font>
         </Text>
         <Button layoutX="52.0" layoutY="33.0" mnemonicParsing="false" onAction="#generateOnClick" prefHeight="23.0"
-                prefWidth="184.0" text="生成二维码">
+                prefWidth="184.0" text="生成单个二维码">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+        <Button layoutX="52.0" layoutY="196.0" mnemonicParsing="false" onAction="#analysisMoreOnClick" prefHeight="23.0"
+                prefWidth="184.0" text="2.解析多个二维码">
             <font>
                 <Font size="14.0"/>
             </font>
