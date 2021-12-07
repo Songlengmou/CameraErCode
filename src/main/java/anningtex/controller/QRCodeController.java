@@ -1,9 +1,7 @@
 package anningtex.controller;
 
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.Result;
+import anningtex.config.Constants;
+import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.multi.qrcode.QRCodeMultiReader;
@@ -51,8 +49,8 @@ public class QRCodeController implements Initializable {
     public void btnOpenLocal(ActionEvent actionEvent) {
         JFrame jFrame = new JFrame("本地文件");
         jFrame.setSize(800, 800);
-//        String localPath = Constants.TEST_PIC;
-        String localPath = showFileOpenDialog(jFrame);
+        String localPath = Constants.TEST_PIC_MORE;
+//        String localPath = showFileOpenDialog(jFrame);
         System.out.println(localPath);
         File file = new File(localPath);
         imageView.setImage(new Image(file.toURI().toString()));
@@ -114,6 +112,7 @@ public class QRCodeController implements Initializable {
         hints.put(DecodeHintType.CHARACTER_SET, "UTF-8");
         hints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
         hints.put(DecodeHintType.PURE_BARCODE, Boolean.TRUE);
+        hints.put(DecodeHintType.POSSIBLE_FORMATS, BarcodeFormat.QR_CODE);
         try {
             Result result = new MultiFormatReader().decode(bitmap, hints);
             itemLists.add(result.getText());
