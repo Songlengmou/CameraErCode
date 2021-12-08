@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.text.Text?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="797.0"
             prefWidth="980.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="anningtex.controller.QRCodeController">
@@ -17,6 +18,10 @@
                 <Font size="13.0"/>
             </font>
         </Button>
+        <Text fx:id="tvTotal" fill="#9a0c98" layoutX="248.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Total: 0" textAlignment="CENTER" wrappingWidth="181.240234375"
+              style="-fx-font-weight: bold;-fx-font-size: 16">
+        </Text>
         <ScrollPane layoutX="7.0" layoutY="35.0" prefHeight="435.0" prefViewportHeight="460.0" prefViewportWidth="447.0"
                     prefWidth="450.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="7.0"
                     AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0">

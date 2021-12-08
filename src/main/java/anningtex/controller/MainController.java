@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Objects;
 
 /**
  * desc:生成和解析单个二维码
@@ -88,7 +89,7 @@ public class MainController {
         Stage stage = new Stage();
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource(Constants.QR_CODE_VIEW_PATH));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constants.QR_CODE_VIEW_PATH)));
             Scene scene = new Scene(root);
             stage.setTitle("解析多个二维码");
             stage.setScene(scene);

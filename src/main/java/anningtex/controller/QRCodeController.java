@@ -17,6 +17,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -35,9 +36,17 @@ public class QRCodeController implements Initializable {
     @FXML
     Button btnLocal;
     @FXML
+    Text tvTotal;
+    @FXML
     ImageView imageView;
     @FXML
     VBox vBox;
+    /**
+     * 总数
+     */
+    private static int num;
+    private static List<String> decodeLists;
+    private static List<String> itemLists;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,17 +56,18 @@ public class QRCodeController implements Initializable {
 
     @FXML
     public void btnOpenLocal(ActionEvent actionEvent) {
+        cleanLocal();
         JFrame jFrame = new JFrame("本地文件");
         jFrame.setSize(800, 800);
-        String localPath = Constants.TEST_PIC_MORE;
-//        String localPath = showFileOpenDialog(jFrame);
+//        String localPath = Constants.TEST_PIC_MORE;
+        String localPath = showFileOpenDialog(jFrame);
         System.out.println(localPath);
         File file = new File(localPath);
         imageView.setImage(new Image(file.toURI().toString()));
         //解析识别二维码
-        List<String> decode = new ArrayList<>();
+        decodeLists = new ArrayList<>();
         try {
-            decode.addAll(decode(new File(localPath)));
+            decodeLists.addAll(decode(new File(localPath)));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,9 +75,12 @@ public class QRCodeController implements Initializable {
         imageView.setImage(image);
         imageView.setFitWidth(500);
         imageView.setFitHeight(500);
-        decode.forEach(str -> {
+        decodeLists.forEach(str -> {
             vBox.getChildren().add(new TextField(str));
         });
+        if (num != 0) {
+            tvTotal.setText("Total: " + num);
+        }
     }
 
     /**
@@ -101,7 +114,7 @@ public class QRCodeController implements Initializable {
     }
 
     public static List<String> decode(File file) throws Exception {
-        List<String> itemLists = new ArrayList<>();
+        itemLists = new ArrayList<>();
         BufferedImage image = ImageIO.read(file);
         if (image == null) {
             new Alert(Alert.AlertType.ERROR, "图片不存在!").showAndWait();
@@ -121,8 +134,24 @@ public class QRCodeController implements Initializable {
             Result[] results = qrCodeMultiReader.decodeMultiple(bitmap, hints);
             Arrays.stream(Optional.of(results).orElse(new Result[]{})).forEach(result -> {
                 itemLists.add(result.getText());
+                num++;
             });
         }
         return itemLists;
+    }
+
+    private void cleanLocal() {
+        if ((decodeLists != null ? decodeLists.size() : 0) > 0 || (itemLists != null ? itemLists.size() : 0) > 0) {
+            num = 0;
+            tvTotal.setText("Total: " + num);
+            vBox.getChildren().clear();
+            Objects.requireNonNull(decodeLists).clear();
+            itemLists.clear();
+            String localPath = Constants.TEST_PIC_MORE;
+            ImageView image = new ImageView(new Image(new File(localPath).toURI().toString()));
+            vBox.getChildren().add(image);
+            image.setFitWidth(500);
+            image.setFitHeight(500);
+        }
     }
 }
